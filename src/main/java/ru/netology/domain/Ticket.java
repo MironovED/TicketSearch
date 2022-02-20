@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 public class Ticket implements Comparable<Ticket> {
     private int id;
     private int price;
-    private String fromAirport;
-    private String toAirport;
+    private String from;
+    private String to;
     private int travelTime;
 
 
     @Override
     public int compareTo(Ticket o) {
-        return id - o.id;
+        return price - o.price;
     }
 }
