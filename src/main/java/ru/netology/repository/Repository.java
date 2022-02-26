@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.netology.domain.Ticket;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -22,6 +25,30 @@ public class Repository {
 
     public Ticket[] findAll() {
         return items;
+    }
+
+    public Ticket[] findAll (String from, String to, Comparator<Ticket> comparator) {
+        Ticket[] result = new Ticket[0];
+        for (Ticket item : items) {
+            if (matches(item, from, to)) {
+                int length = result.length + 1;
+                Ticket[] tmp = new Ticket[length];
+                System.arraycopy(result, 0, tmp, 0, result.length);
+                int lastIndex = tmp.length - 1;
+                tmp[lastIndex] = item;
+                result = tmp;
+            }
+        }
+        Arrays.sort(result, comparator);
+        return result;
+    }
+
+    public boolean matches(Ticket ticket, String from, String to) {
+        if (ticket.getFrom().contains(from) && ticket.getTo().contains(to)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void removeById(int id) {
