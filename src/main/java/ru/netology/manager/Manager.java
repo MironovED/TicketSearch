@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import ru.netology.domain.Ticket;
 import ru.netology.repository.Repository;
 
+import java.util.Arrays;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -34,6 +36,7 @@ public class Manager {
                 result = tmp;
             }
         }
+        Arrays.sort(result);
         return result;
     }
 
