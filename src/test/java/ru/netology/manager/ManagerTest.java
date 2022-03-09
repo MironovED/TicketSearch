@@ -40,7 +40,7 @@ class ManagerTest {
         manager.add(ten);
 
 
-        Ticket[] actual = repo.findAll("VKO", "KZN", new TicketByPriceAscComparator());
+        Ticket[] actual = manager.searchBy("VKO", "KZN", new TicketByPriceAscComparator());
         Ticket[] expected = {four, seven, one, three, ten, nine};
 
         assertArrayEquals(actual, expected);
